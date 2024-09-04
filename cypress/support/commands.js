@@ -25,12 +25,21 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('fazerLogin', (username) => {
-    cy.visit('https://www.saucedemo.com')
+    cy.visit('/')
     cy.title().should('eq', 'Swag Labs')
     cy.get('[data-test="username"]')
       .type(username)
     cy.get('[data-test="password"]')
-      .type(password)
+      .type('secret_sauce')
     cy.get('[data-test="login-button"]')
       .click()
+})
+Cypress.Commands.add('addToCart', (username) => {
+    cy.get('[data-test="inventory-container"]').should('be.visible')
+    cy.get('[data-test="inventory-list"] > :nth-child(1)').should('be.visible')
+    cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+    cy.get('[data-test="remove-sauce-labs-backpack"]').should('be.visible')
+    cy.get('[data-test="shopping-cart-badge"]').contains('1')
+    cy.get('[data-test="shopping-cart-link"]').click()
+    cy.get('[data-test="inventory-item-name"]').contains('Sauce Labs Backpack')
 })

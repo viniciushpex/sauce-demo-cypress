@@ -1,6 +1,5 @@
 describe('login', () => {
   
-  const password = 'secret_sauce'
   it('Fazer login como standard', () => {
     const username = 'standard_user'
     cy.fazerLogin(username)
@@ -14,17 +13,6 @@ describe('login', () => {
     cy.get('[data-test="error"]')
       .contains('Epic sadface: Sorry, this user has been locked out.')
     cy.get('[data-test="error-button"]')
-      .click()
-  })
-
-  Cypress.Commands.add('fazerLogin', (username) => {
-    cy.visit('https://www.saucedemo.com')
-    cy.title().should('eq', 'Swag Labs')
-    cy.get('[data-test="username"]')
-      .type(username)
-    cy.get('[data-test="password"]')
-      .type(password)
-    cy.get('[data-test="login-button"]')
       .click()
   })
 })
