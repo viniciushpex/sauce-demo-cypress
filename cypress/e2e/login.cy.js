@@ -1,17 +1,14 @@
 describe('login', () => {
   
   it('Fazer login como standard', () => {
-    const username = 'standard_user'
-    cy.fazerLogin(username)
+    cy.fazerLogin('standard_user')
   })
 
   it('Fazer login com usuário bloqueado', () => {
 
-    const username = 'locked_out_user'
-    cy.fazerLogin(username)
-
+    cy.fazerLogin('locked_out_user')
     cy.get('[data-test="error"]')
-      .contains('Epic sadface: Sorry, this user has been locked out.')
+      .contains('Epic saadface: Sorry, this user has been locked out.')
     cy.get('[data-test="error-button"]')
       .click()
   })

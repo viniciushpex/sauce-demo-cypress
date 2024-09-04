@@ -1,4 +1,9 @@
 describe('products', () => {
+    
+    beforeEach(()=> {
+        cy.viewport(1920, 1080)
+    })
+
     context('listagem', () => {
         it('Validar exibição dos produtos', () => {
             cy.fazerLogin('standard_user')
