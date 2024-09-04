@@ -15,7 +15,6 @@ describe('login', () => {
       .contains('Epic sadface: Sorry, this user has been locked out.')
     cy.get('[data-test="error-button"]')
       .click()
-    cy.get('[data-test="error-button"]')
   })
 
   Cypress.Commands.add('fazerLogin', (username) => {

@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('fazerLogin', (username) => {
+    cy.visit('https://www.saucedemo.com')
+    cy.title().should('eq', 'Swag Labs')
+    cy.get('[data-test="username"]')
+      .type(username)
+    cy.get('[data-test="password"]')
+      .type(password)
+    cy.get('[data-test="login-button"]')
+      .click()
+})
