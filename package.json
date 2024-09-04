@@ -1,6 +1,6 @@
 {
   "name": "cypress-sauce-test",
-  "packageManager": "yarn@4.4.1",
+  "packageManager": "yarn@1.22.22",
   "version": "1.0.0",
   "description": "projeto de testes end-to-end",
   "main": "index.js",
