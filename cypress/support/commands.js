@@ -1,30 +1,5 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('fazerLogin', (username) => {
+// Preset para execução do login passando o username desejado
+Cypress.Commands.add('logIn', (username) => {
     cy.visit('/')
     cy.title().should('eq', 'Swag Labs')
     cy.get('[data-test="username"]')
@@ -34,7 +9,9 @@ Cypress.Commands.add('fazerLogin', (username) => {
     cy.get('[data-test="login-button"]')
       .click()
 })
-Cypress.Commands.add('addToCart', (username) => {
+
+//Preset para adição de um produto no carrinho
+Cypress.Commands.add('addToCart', () => {
     cy.get('[data-test="inventory-container"]').should('be.visible')
     cy.get('[data-test="inventory-list"] > :nth-child(1)').should('be.visible')
     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
@@ -42,4 +19,13 @@ Cypress.Commands.add('addToCart', (username) => {
     cy.get('[data-test="shopping-cart-badge"]').contains('1')
     cy.get('[data-test="shopping-cart-link"]').click()
     cy.get('[data-test="inventory-item-name"]').contains('Sauce Labs Backpack')
+})
+
+//Preset para inserção de dados no formulário de checkout
+Cypress.Commands.add('addInfo', () => {
+    cy.get('[data-test="title"]').contains('Checkout: Your Information')
+    cy.get('[data-test="firstName"]').type('Vinicius')
+    cy.get('[data-test="lastName"]').type('Pereira')
+    cy.get('[data-test="postalCode"]').type('123456')
+    cy.get('[data-test="continue"]').click()
 })

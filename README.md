@@ -15,4 +15,6 @@ Para o projeto, foi utilizado o framework de automação Cypress, em JavaScript.
 Tendo todos os pré-requisitos adicionados, basta executar o comando "yarn cypress open" no terminal para que o Cypress mostre as suites disponíveis para execução.<br><br>
 Para testes regressivos, é recomendado utilizar o comando "yarn cypress run", que executará os cenários em segundo plano, trazendo um relatório completo da execução, com vídeos e screenshots. (Para rodar os testes em um navegador específico, modificar esse comando para "yarn cypress run --browser (nomedonavegador)", por exemplo: "yarn cypress run --browser chrome")
 
+## Pipelines CI
 
+A cada push realizado pelo git, é executado o teste de integração pelo Github Actions. Os mesmos podem ser vistos na aba Actions no repositório.

@@ -1,12 +1,11 @@
 describe('products', () => {
-    
-    beforeEach(()=> {
-        cy.viewport(1920, 1080)
-    })
 
-    context('listagem', () => {
-        it('Validar exibição dos produtos', () => {
-            cy.fazerLogin('standard_user')
+    //Testes relacionados ao contexto de listagem de produtos
+    context('inventory', () => {
+
+        //Valida a exibição de todos os produtos do inventário
+        it('Validate product display', () => {
+            cy.logIn('standard_user')
             cy.get('[data-test="inventory-container"]').should('be.visible')
             cy.get('[data-test="inventory-list"] > :nth-child(1)').should('be.visible')
             cy.get('[data-test="inventory-list"] > :nth-child(2)').should('be.visible')
@@ -16,20 +15,28 @@ describe('products', () => {
             cy.get('[data-test="inventory-list"] > :nth-child(6)').should('be.visible')
         })
     })
-    context('carrinho', () => {
-        it('Inserir primeiro produto da lista ao carrinho', () => {
-            cy.fazerLogin('standard_user')
+
+    //Testes relacionados ao contexto de carrinho
+    context('cart', () => {
+
+        //Valida a adição do primeiro produto do inventário ao carrinho
+        it('Add the first product from the list to the cart', () => {
+            cy.logIn('standard_user')
             cy.addToCart()
         })
-        it('Remover produto do carrinho', () => {
-            cy.fazerLogin('standard_user')
+
+        //Valida a remoção de um produto no carrinho
+        it('Remove product from cart', () => {
+            cy.logIn('standard_user')
             cy.addToCart()
             cy.get('[data-test="remove-sauce-labs-backpack"]')
                 .click()
                 .should('not.exist')
         })
-        it('Remover produto do carrinho pela tela de inventário', () => {
-            cy.fazerLogin('standard_user')
+
+        //Valida a remoção do produto no carrinho já na tela de inventário
+        it('Remove product from cart via inventory screen', () => {
+            cy.logIn('standard_user')
             cy.get('[data-test="inventory-container"]').should('be.visible')
             cy.get('[data-test="inventory-list"] > :nth-child(1)').should('be.visible')
             cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
